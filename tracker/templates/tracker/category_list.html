@@ -1,0 +1,10 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+    {% for category in categories %}
+        <div>
+            <p>{{ category.name }} {{ category.description }}</p>
+            <p>{{ linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

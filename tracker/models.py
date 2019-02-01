@@ -11,7 +11,7 @@ from django.db import models
 
 class Category(models.Model):
     catid = models.AutoField(db_column='catid', primary_key=True)  
-    category = models.CharField(db_column='type', max_length=20, blank=True, null=True)  
+    name = models.CharField(db_column='type', max_length=20, blank=True, null=True)  
     description = models.CharField(db_column='description', max_length=50, blank=True, null=True)  
     
     def __str__(self):
@@ -52,7 +52,7 @@ class Catalog(models.Model):
 
 class Inventory(models.Model):
     invid = models.AutoField(db_column='invid', primary_key=True)  
-    quantity = models.IntegerField(db_column='quantity', max_length=45, blank=True, null=True)  
+    quantity = models.IntegerField(db_column='quantity', blank=True, null=True)  
     acquiredate = models.DateTimeField(db_column='acquiredate', blank=True, null=True)  
     catalogid = models.ForeignKey(Catalog, models.DO_NOTHING, db_column='catalogid', blank=True, null=True)  
 
