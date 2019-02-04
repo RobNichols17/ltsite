@@ -1,8 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category
 from .forms import CategoryForm
+from .models import Producer
+from .forms import ProducerForm
+from .models import Catalog
+from .forms import CatalogForm
 
 # Create your views here.
+def main(request):
+    return render(request, 'tracker/main.html',{})
+
+# Start category views
 def category_list(request):
     categories = Category.objects.order_by('name')
     return render(request, 'tracker/category_list.html',{'categories' : categories})
@@ -35,3 +43,72 @@ def category_edit(request, pk):
     else:
         form = CategoryForm(instance=category)
     return render(request, 'tracker/category_edit.html', {'form': form})
+
+# Start producer views
+def producer_list(request):
+    producers = Producer.objects.order_by('name')
+    return render(request, 'tracker/producer_list.html',{'producers' : producers})
+
+def producer_new(request):
+    if request.method == "POST":
+        form = ProducerForm(request.POST)
+        if form.is_valid():
+            producer = form.save(commit=False)
+            producer.save()
+#            return redirect('producer_detail', pk=producer.pk)
+            return redirect('producer_list')
+    else:
+        form = ProducerForm()
+    return render(request, 'tracker/producer_edit.html', {'form': form})
+
+def producer_detail(request, pk):
+    producer = get_object_or_404(Producer, pk=pk)
+    return render(request, 'tracker/producer_detail.html', {'producer': producer})
+
+def producer_edit(request, pk):
+    producer = get_object_or_404(Producer, pk=pk)
+    if request.method == "POST":
+        form = ProducerForm(request.POST, instance=producer)
+        if form.is_valid():
+            producer = form.save(commit=False)
+            producer.save()
+#            return redirect('producer_detail', pk=producer.pk)
+            return redirect('producer_list')
+    else:
+        form = ProducerForm(instance=producer)
+    return render(request, 'tracker/producer_edit.html', {'form': form})
+
+# Start catalog views
+def catalog_list(request):
+    catalogs = Catalog.objects.order_by('name')
+    return render(request, 'tracker/catalog_list.html',{'catalogs' : catalogs})
+
+def catalog_new(request):
+    if request.method == "POST":
+        producerlist = Producer.objects.order_by('name')
+        form = CatalogForm(request.POST)
+        if form.is_valid():
+            catalog = form.save(commit=False)
+            catalog.save()
+#            return redirect('catalog_detail', pk=catalog.pk)
+            return redirect('catalog_list')
+    else:
+        form = CatalogForm()
+    return render(request, 'tracker/catalog_edit.html', {'form': form})
+
+def catalog_detail(request, pk):
+    catalog = get_object_or_404(Catalog, pk=pk)
+    return render(request, 'tracker/catalog_detail.html', {'catalog': catalog})
+
+def catalog_edit(request, pk):
+    catalog = get_object_or_404(Catalog, pk=pk)
+    if request.method == "POST":
+        form = CatalogForm(request.POST, instance=catalog)
+        if form.is_valid():
+            catalog = form.save(commit=False)
+            catalog.save()
+#            return redirect('catalog_detail', pk=catalog.pk)
+            return redirect('catalog_list')
+    else:
+        form = CatalogForm(instance=catalog)
+    return render(request, 'tracker/catalog_edit.html', {'form': form})
