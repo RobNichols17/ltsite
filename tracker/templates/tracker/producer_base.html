@@ -1,19 +1,7 @@
-{% load static from staticfiles %}
-<html>
-	<head>
-		<title>Rob Wine_Spirits</title>
-           	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/tracker.css' %}">
-	</head>
-
-    <body>
-        <div class="page-header">
-            <a href="{% url 'main' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span></a> 
+{% extends 'tracker/base.html' %}
+        {% block plus %}
             <a href="{% url 'producer_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> 
-            <h1><a href="/">Nichols Wine and Spirits</a></h1>
-        </div>
+        {% endblock %}
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
@@ -22,5 +10,3 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>

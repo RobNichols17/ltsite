@@ -1,8 +1,8 @@
-{% extends 'tracker/catalog_base.html' %}
+{% extends 'tracker/inventory_base.html' %}
 
 {% block content %}
     <div class="post">
-        <h2>{{ catalog.name }}
+        <h2>{{ inventory.item }}
         <a class="btn btn-default" href="{% url 'catalog_edit' pk=catalog.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h2>
         <table>
             <tr>

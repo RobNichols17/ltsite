@@ -4,15 +4,7 @@
     <div class="post">
         <h2>{{ catalog.name }}
         <a class="btn btn-default" href="{% url 'catalog_edit' pk=catalog.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h2>
-        <table>
-            <tr>
-                <td>Description</td>
-                <td>{{ catalog.description}}</td>
-            </tr>
-            <tr>
-                <td>Tasting Notes</td>
-                <td>{{ catalog.tastingnotes}}</td>
-            </tr>
-        </table>
+        <p>{{ catalog.description|linebreaksbr }}</p>
+        <p>{{ catalog.tastingnotes|linebreaksbr }}</p>
     </div>
 {% endblock %}

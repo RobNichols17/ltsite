@@ -37,7 +37,7 @@ class Producer(models.Model):
 
 class Catalog(models.Model):
     catalogid = models.AutoField(db_column='catalogid', primary_key=True)  
-    name = models.CharField(db_column='name', max_length=20, blank=True, null=True)  
+    name = models.CharField(db_column='name', max_length=40, blank=True, null=True)  
     description = models.TextField(db_column='description', blank=True, null=True)  
     color = models.CharField(db_column='color', max_length=20, blank=True, null=True)
     tastingnotes = models.TextField(db_column='tastingnotes', blank=True, null=True)

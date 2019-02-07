@@ -5,6 +5,8 @@ from .models import Producer
 from .forms import ProducerForm
 from .models import Catalog
 from .forms import CatalogForm
+from .models import Inventory
+from .forms import InventoryForm
 
 # Create your views here.
 def main(request):
@@ -85,7 +87,6 @@ def catalog_list(request):
 
 def catalog_new(request):
     if request.method == "POST":
-        producerlist = Producer.objects.order_by('name')
         form = CatalogForm(request.POST)
         if form.is_valid():
             catalog = form.save(commit=False)
@@ -112,3 +113,37 @@ def catalog_edit(request, pk):
     else:
         form = CatalogForm(instance=catalog)
     return render(request, 'tracker/catalog_edit.html', {'form': form})
+
+# Start inventory views
+def inventory_list(request):
+    inventories = Inventory.objects.order_by('catalogid')
+    return render(request, 'tracker/inventory_list.html',{'inventories' : inventories})
+
+def inventory_new(request):
+    if request.method == "POST":
+        form = InventoryForm(request.POST)
+        if form.is_valid():
+            inventory = form.save(commit=False)
+            inventory.save()
+#            return redirect('inventory_detail', pk=inventory.pk)
+            return redirect('inventory_list')
+    else:
+        form = InventoryForm()
+    return render(request, 'tracker/inventory_edit.html', {'form': form})
+
+def inventory_detail(request, pk):
+    inventory = get_object_or_404(Inventory, pk=pk)
+    return render(request, 'tracker/inventory_detail.html', {'inventory': inventory})
+
+def inventory_edit(request, pk):
+    inventory = get_object_or_404(Inventory, pk=pk)
+    if request.method == "POST":
+        form = InventoryForm(request.POST, instance=inventory)
+        if form.is_valid():
+            inventory = form.save(commit=False)
+            inventory.save()
+#            return redirect('inventory_detail', pk=inventory.pk)
+            return redirect('inventory_list')
+    else:
+        form = InventoryForm(instance=inventory)
+    return render(request, 'tracker/inventory_edit.html', {'form': form})

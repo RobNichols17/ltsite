@@ -1,0 +1,21 @@
+{% extends 'tracker/inventory_base.html' %}
+
+{% block stuff %}
+        <h1>Inventory</h1>
+        <div>
+            <table>
+              <tr>
+                <th>Item </th>
+                <th>Quantity</th>
+                <th>Data Acquired</th>
+              </tr>
+            {% for inventory in inventories %}
+              <tr>
+                <td><a href="http://robnichols17.pythonanywhere.com/inventory/{{ inventory.pk }}/edit/">{{ inventory.catalogid }}</a></td>
+                <td>{{ inventory.quantity }}</td>
+                <td>{{ inventory.acquiredate }}</td>
+              </tr>
+            {% endfor %}
+            </table>
+        </div>
+{% endblock %}

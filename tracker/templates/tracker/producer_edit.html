@@ -1,10 +1,10 @@
 {% extends 'tracker/base.html' %}
 
 {% block content %}
-    <h2>Edit category</h2>
+    <h2>Edit producer</h2>
     <form method="POST" class="category-form">{% csrf_token %}
         {{ form.as_p }}
-        <a href="http://robnichols17.pythonanywhere.com" class="btn btn-default">Cancel</a>
+        <a href="http://robnichols17.pythonanywhere.com/producer/list/" class="btn btn-default">Cancel</a>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}

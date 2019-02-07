@@ -1,15 +1,15 @@
-{% extends 'tracker/catalog_base.html' %}
+{% extends 'tracker/inventory_base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Edit category</h2>
-    <form method="POST" class="category-form">
+    <h2>Edit Inventory</h2>
+    <form method="POST" class="inventory-form">
         {% csrf_token %}
         <table border=1>
            {{ form|crispy }}
         </table>
-        <a href="{% url 'catalog_list' %}" class="btn btn-warning">Cancel</a>
+        <a href="http://robnichols17.pythonanywhere.com/inventory/list/" class="btn btn-default">Cancel</a>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}
