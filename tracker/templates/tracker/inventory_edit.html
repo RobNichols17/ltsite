@@ -9,7 +9,7 @@
         <table border=1>
            {{ form|crispy }}
         </table>
-        <a href="http://robnichols17.pythonanywhere.com/inventory/list/" class="btn btn-default">Cancel</a>
+        <a href="{% url 'inventory_list' %}" class="btn btn-default">Cancel</a>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}

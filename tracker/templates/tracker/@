@@ -1,0 +1,76 @@
+{% load static from staticfiles %}
+
+<html>
+	<head>
+		<title>Rob Wine_Spirits</title>
+        <!--         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}"> -->
+		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/tracker.css' %}">
+        <style>
+          {% block tabstyle %}
+          {% endblock %}
+        </style>
+	</head>
+
+    <body>
+       <div class="page-header">
+<!--            <nav class="navbar navbar-default navbar-static-top" role="navigation">
+              <div class="container">
+                <div class="navbar-header" style="background:#C25100">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div> -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+<!--                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                      <li><a href="{% url 'main' %}">Home</a></li>
+                    <li><a href="{% url 'category_list' %}">Categories</a></li>
+                    <li><a href="{% url 'producer_list' %}">Producers</a></li>
+                    <li><a href="{% url 'catalog_list' %}">Catalog</a></li>
+                    <li><a href="{% url 'inventory_list' %}">Inventory</a></li>
+                  </ul>
+                </div>
+              </div>
+</nav> -->
+            <h1><a href="/">Nichols Wine and Spirits</a></h1>
+            <a href="{% url 'main' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span></a> 
+            <div class="plus">
+                {% block plus %}
+                {% endblock %}
+            </div>
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+<!--                    <a class="navbar-brand" href="{% url 'main' %}">Nichols Wine & Spirits</a> -->
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'main' %}">Home</a></li>
+                    <li><a href="{% url 'category_list' %}">Categories</a></li>
+                    <li><a href="{% url 'producer_list' %}">Producers</a></li>
+                    <li><a href="{% url 'catalog_list' %}">Catalog</a></li>
+                    <li><a href="{% url 'inventory_list' %}">Inventory</a></li>
+                </ul>
+              </div>
+            </nav>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8 nav-color">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

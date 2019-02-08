@@ -1,3 +1,5 @@
+from django.conf.urls.static import static
+from django.conf import settings
 from django.urls import path
 from . import views
 
@@ -20,3 +22,4 @@ urlpatterns = [
     path('inventory/new/', views.inventory_new, name='inventory_new'),
     path('inventory/<int:pk>/edit/', views.inventory_edit, name='inventory_edit'),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

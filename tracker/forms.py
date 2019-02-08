@@ -32,8 +32,7 @@ class InventoryForm(forms.ModelForm):
 
     class Meta:
         model = Inventory
-        fields = ('catalogid', 'quantity', 'acquiredate')
+        fields = ('catalogid', 'quantity')
         labels  = {
                 'catalogid': ('Item'),
-                'acquiredate': ('Date Acquired'),
         }

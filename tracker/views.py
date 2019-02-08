@@ -147,3 +147,14 @@ def inventory_edit(request, pk):
     else:
         form = InventoryForm(instance=inventory)
     return render(request, 'tracker/inventory_edit.html', {'form': form})
+
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+    else:
+        form = DocumentForm()
+    return render(request, 'tracker/model_form_upload.html', {'form': form})
+

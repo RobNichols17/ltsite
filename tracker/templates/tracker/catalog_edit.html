@@ -3,13 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Edit category</h2>
+    <h2>Edit catalog</h2>
     <form method="POST" class="category-form">
         {% csrf_token %}
         <table border=1>
            {{ form|crispy }}
         </table>
-        <a href="{% url 'catalog_list' %}" class="btn btn-warning">Cancel</a>
+        <a href="{% url 'catalog_list' %}" class="btn btn-default">Cancel</a>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}

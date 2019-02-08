@@ -1,19 +1,20 @@
 {% extends 'tracker/inventory_base.html' %}
 
 {% block stuff %}
-        <h1>Inventory</h1>
+        <div class="h2">
+             <a href="{% url 'inventory_new' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a>
+             Inventory
+        </div>
         <div>
             <table>
               <tr>
                 <th>Item </th>
                 <th>Quantity</th>
-                <th>Data Acquired</th>
               </tr>
             {% for inventory in inventories %}
               <tr>
-                <td><a href="http://robnichols17.pythonanywhere.com/inventory/{{ inventory.pk }}/edit/">{{ inventory.catalogid }}</a></td>
+                  <td style="padding-right: 10px;"><a href="{% url 'inventory_edit' inventory.pk %}">{{ inventory.catalogid }}</a></td>
                 <td>{{ inventory.quantity }}</td>
-                <td>{{ inventory.acquiredate }}</td>
               </tr>
             {% endfor %}
             </table>

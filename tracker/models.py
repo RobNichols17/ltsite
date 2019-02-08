@@ -54,7 +54,6 @@ class Catalog(models.Model):
 class Inventory(models.Model):
     invid = models.AutoField(db_column='invid', primary_key=True)  
     quantity = models.IntegerField(db_column='quantity', blank=True, null=True)  
-    acquiredate = models.DateTimeField(db_column='acquiredate', blank=True, null=True)  
     catalogid = models.ForeignKey(Catalog, models.DO_NOTHING, db_column='catalogid', blank=True, null=True)  
 
     def __str__(self):
@@ -64,3 +63,9 @@ class Inventory(models.Model):
         managed = True
         db_table = 'Inventory'
 
+
+class UploadImages(models.Model):
+    image = models.ImageField(upload_to='pro_img', blank=True)
+
+    def __str__(self):
+        return str(image)
