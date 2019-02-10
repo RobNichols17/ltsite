@@ -1,3 +1,4 @@
+from django.db import models
 from django import forms
 from .models import Category
 from .models import Catalog
@@ -21,7 +22,8 @@ class CatalogForm(forms.ModelForm):
 
     class Meta:
         model = Catalog
-        fields = ('name', 'producerid', 'categoryid', 'description', 'color', 'tastingnotes')
+        fields = ('name', 'producerid', 'categoryid', 'description', 'color',
+                  'tastingnotes', 'imgname', 'catalog_img')
         labels  = {
                 'producerid': ('Producer'),
                 'categoryid': ('Category'),
@@ -36,3 +38,6 @@ class InventoryForm(forms.ModelForm):
         labels  = {
                 'catalogid': ('Item'),
         }
+
+class SharingForms(forms.Form):
+    photo=models.ImageField()

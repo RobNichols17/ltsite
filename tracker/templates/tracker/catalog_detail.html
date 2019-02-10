@@ -1,16 +1,20 @@
 {% extends 'tracker/catalog_base.html' %}
 
+{% load staticfiles %}
+
 {% block content %}
     <div class="post">
-        <h2>{{ catalog.name }}
+        <h2>
+        <img src="{% static catalog.imgname %}"/>
+        {{ catalog.name }}
         <a class="btn btn-default" href="{% url 'catalog_edit' pk=catalog.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h2>
         <table>
             <tr>
-                <td>Description</td>
+                <td style="padding: 10px"><strong>Description</strong></td>
                 <td>{{ catalog.description}}</td>
             </tr>
             <tr>
-                <td>Tasting Notes</td>
+                <td style="padding: 10px"><strong>Tasting Notes</strong></td>
                 <td>{{ catalog.tastingnotes}}</td>
             </tr>
         </table>

@@ -43,7 +43,9 @@ class Catalog(models.Model):
     tastingnotes = models.TextField(db_column='tastingnotes', blank=True, null=True)
     categoryid = models.ForeignKey(Category, models.DO_NOTHING, db_column='categoryid', blank=True, null=True)  
     producerid = models.ForeignKey(Producer, models.DO_NOTHING, db_column='producerid', blank=True, null=True)  
-
+    imgname = models.CharField(db_column='imgname',  max_length=100, blank=True, null=True) 
+    catalog_img = models.ImageField(upload_to='bottles', blank=True, null=True)
+    
     def __str__(self):
         return self.name
 
@@ -63,9 +65,3 @@ class Inventory(models.Model):
         managed = True
         db_table = 'Inventory'
 
-
-class UploadImages(models.Model):
-    image = models.ImageField(upload_to='pro_img', blank=True)
-
-    def __str__(self):
-        return str(image)

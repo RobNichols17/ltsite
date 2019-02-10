@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category
 from .forms import CategoryForm
@@ -7,6 +8,7 @@ from .models import Catalog
 from .forms import CatalogForm
 from .models import Inventory
 from .forms import InventoryForm
+from .forms import SharingForms
 
 # Create your views here.
 def main(request):
@@ -147,14 +149,3 @@ def inventory_edit(request, pk):
     else:
         form = InventoryForm(instance=inventory)
     return render(request, 'tracker/inventory_edit.html', {'form': form})
-
-def model_form_upload(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('main')
-    else:
-        form = DocumentForm()
-    return render(request, 'tracker/model_form_upload.html', {'form': form})
-
