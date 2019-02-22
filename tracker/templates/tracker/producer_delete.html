@@ -1,15 +1,15 @@
-{% extends 'tracker/inventory_base.html' %}
+{% extends 'tracker/producer_base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Delete Inventory Item</h2>
-    <form method="POST" class="inventory-form">
+    <h2>Delete Producer Item</h2>
+    <form method="POST" class="producer-form">
         {% csrf_token %}
         <table border=1>
            {{ form|crispy }}
         </table>
-        <a href="{% url 'inventory_list' %}" class="btn btn-default">Cancel</a>
+        <a href="{% url 'producer_list' %}" class="btn btn-default">Cancel</a>
         <button type="submit" class="save btn btn-warning">Delete</button>
     </form>
 {% endblock %}

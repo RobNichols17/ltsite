@@ -1,0 +1,24 @@
+{% extends 'tracker/recipe_base.html' %}
+
+{% block content %}
+        <div class="h2">
+             <a href="{% url 'recipe_new' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a>
+             Recipe
+        </div>
+        <div>
+            <table>
+              <tr>
+                <th>Name </th>
+                <th>Description</th>
+              </tr>
+            {% for recipe in recipes %}
+              <tr>
+                <td style="padding-right: 10px;"><a href="{% url 'recipe_edit' recipe.pk %}">{{ recipe.name }}</a></td>
+                <td>{{ recipe.description }}</td>
+                <td><a href="{% url 'ingredient_list' %}"><span class="glyphicon glyphicon-list-alt" style="padding-right: 10px"></span></a></td>
+                <td><a href="{% url 'recipe_delete' recipe.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+              </tr>
+            {% endfor %}
+            </table>
+        </div>
+{% endblock %}

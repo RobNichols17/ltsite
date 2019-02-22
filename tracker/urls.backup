@@ -33,10 +33,5 @@ urlpatterns = [
     path('recipe/<int:pk>/edit/', views.recipe_edit, name='recipe_edit'),
     path('recipe/<int:pk>/delete/', views.recipe_delete,
          name='recipe_delete'),
-    path('ingredient/list/', views.ingredient_list, name='ingredient_list'),
-    path('ingredient/new', views.ingredient_new, name='ingredient_new'),
-    path('ingredient/<int:pk>/edit/', views.ingredient_edit, name='ingredient_edit'),
-    path('ingredient/<int:pk>/delete/', views.ingredient_delete,
-         name='ingredient_delete'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

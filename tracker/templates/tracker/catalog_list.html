@@ -1,12 +1,12 @@
 {% extends 'tracker/catalog_base.html' %}
 
-{% block stuff %}
+{% block content %}
         <div class="h2">
             <a href="{% url 'catalog_new' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a>
             Catalog
         </div>
         <div>
-            <table style="width:100%">
+            <table class="cataloglist-table">
               <tr>
                 <th>Item </th>
                 <th>Producer</th>
@@ -16,11 +16,12 @@
               </tr>
             {% for catalog in catalogs %}
               <tr>
-                  <td><a href="{% url 'catalog_edit' catalog.pk %}">{{ catalog.name }}</a></td>
-                <td>{{ catalog.producerid }}</td>
-                <td>{{ catalog.description|slice:"50" }}<a href="{% url 'catalog_detail' catalog.pk %}"> more<a></td>
-                <td>{{ catalog.color }}</td>
+                <td style="width:20%"><a href="{% url 'catalog_edit' catalog.pk %}">{{ catalog.name }}</a></td>
+                <td style="width:15%">{{ catalog.producerid }}</td>
+                <td style="width:35%">{{ catalog.description|slice:"50" }}<a href="{% url 'catalog_detail' catalog.pk %}"> more<a></td>
+                <td style="width:10%">{{ catalog.color }}</td>
                 <td>{{ catalog.tastingnotes }}</td>
+                <td><a href="{% url 'catalog_delete' catalog.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
               </tr>
             {% endfor %}
             </table>

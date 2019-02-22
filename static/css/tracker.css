@@ -64,21 +64,30 @@ h1, h2, h3, h4 {
     color: #000000;
 }
 
+.cataloglist-table {
+      width: 150%;
+    }
+
+/* .cataloglist-table td {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: black;
+    }
+*/
 .catalog-table {
     table {
   border-collapse: collapse;
     }
-
-    table, th, td {
-      border: 1px solid black;
-        }
-    }
+}
+.catalog-description {
+    width: 30%;
+}
 #element1 {display:inline-block;width:600px}
 #element2 {display:inline-block;}
 
 .container-fluid {
     position: relative;
-    top: 100px;
+    top: 120px;
 }
 
 .navbar-inverse {

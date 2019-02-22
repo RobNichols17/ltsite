@@ -1,6 +1,6 @@
 {% extends 'tracker/inventory_base.html' %}
 
-{% block stuff %}
+{% block content %}
         <div class="h2">
              <a href="{% url 'inventory_new' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a>
              Inventory
@@ -13,8 +13,9 @@
               </tr>
             {% for inventory in inventories %}
               <tr>
-                  <td style="padding-right: 10px;"><a href="{% url 'inventory_edit' inventory.pk %}">{{ inventory.catalogid }}</a></td>
+                <td style="padding-right: 10px;"><a href="{% url 'inventory_edit' inventory.pk %}">{{ inventory.catalogid }}</a></td>
                 <td>{{ inventory.quantity }}</td>
+                <td><a href="{% url 'inventory_delete' inventory.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
               </tr>
             {% endfor %}
             </table>

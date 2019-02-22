@@ -14,9 +14,10 @@
               </tr>
             {% for producer in producers %}
               <tr>
-                  <td style="padding: 10px;"><a href="{% url 'producer_edit' producer.pk %}">{{ producer.name }}</a></td>
+                  <td><a href="{% url 'producer_edit' producer.pk %}">{{ producer.name }}</a></td>
                 <td>{{ producer.country }}</td>
                 <td>{{ producer.state }}</td>
+                <td><a href="{% url 'producer_delete' producer.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
               </tr>
             {% endfor %}
             </table>

@@ -178,6 +178,18 @@ def inventory_detail(request, pk):
     inventory = get_object_or_404(Inventory, pk=pk)
     return render(request, 'tracker/inventory_detail.html', {'inventory': inventory})
 
+def recipe_new(request):
+    if request.method == "POST":
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.save()
+#            return redirect('recipe_detail', pk=recipe.pk)
+            return redirect('recipe_list')
+    else:
+        form = RecipeForm()
+    return render(request, 'tracker/recipe_edit.html', {'form': form})
+
 def inventory_edit(request, pk):
     inventory = get_object_or_404(Inventory, pk=pk)
     if request.method == "POST":
@@ -212,22 +224,10 @@ def recipe_list(request):
     recipes = Recipe.objects.order_by('name')
     return render(request, 'tracker/recipe_list.html',{'recipes' : recipes})
 
-def recipe_new(request):
-    if request.method == "POST":
-        form = RecipeForm(request.POST)
-        if form.is_valid():
-            recipe = form.save(commit=False)
-            recipe.save()
-#            return redirect('recipe_detail', pk=recipe.pk)
-            return redirect('recipe_list')
-    else:
-        form = RecipeForm()
-    return render(request, 'tracker/recipe_edit.html', {'form': form})
-
 def recipe_edit(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     if request.method == "POST":
-        form = RecipeForm(request.POST, instance=recipe)
+        form = RecipeForm(request.POST, instance=inventory)
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.save()
@@ -252,57 +252,4 @@ def recipe_delete(request, pk):
         form = RecipeForm(instance=recipe)
 
     return render(request, 'tracker/recipe_delete.html', {'form': form})
-
-# Start ingredient views
-def ingredient_list(request):
-    recipes = Recipe.objects.order_by('name')
-    ingredients = Ingredient.objects.order_by('recipeid', 'catalogid')
-    recform = IngredientRecipeFilterForm(request.GET)
-    return render(request, 'tracker/ingredient_list.html',{'ingredients' :
-                                                           ingredients,
-                                                           'recipes': recipes,
-                  'recform': recform})
-def ingredient_list_filter(request):
-    ingredients = Ingredient.objects.order_by('recipeid', 'catalogid')
-    return render(request, 'tracker/ingredient_list.html',{'ingredients' :
-                                                           ingredients})
-def ingredient_new(request):
-    if request.method == "POST":
-        form = IngredientForm(request.POST)
-        if form.is_valid():
-            ingredient = form.save(commit=False)
-            ingredient.save()
-#            return redirect('ingredient_detail', pk=ingredient.pk)
-            return redirect('ingredient_list')
-    else:
-        form = IngredientForm()
-    return render(request, 'tracker/ingredient_edit.html', {'form': form})
-
-def ingredient_edit(request, pk):
-    ingredient = get_object_or_404(Ingredient, pk=pk)
-    if request.method == "POST":
-        form = IngredientForm(request.POST, instance=ingredient)
-        if form.is_valid():
-            ingredient = form.save(commit=False)
-            ingredient.save()
-#            return redirect('ingredient_detail', pk=ingredient.pk)
-            return redirect('ingredient_list')
-    else:
-        form = IngredientForm(instance=ingredient)
-    return render(request, 'tracker/ingredient_edit.html', {'form': form})
-
-def ingredient_delete(request, pk):
-    ingredient = get_object_or_404(Ingredient, pk=pk)
-
-    if request.method == 'POST':
-        form = IngredientForm(request.POST, instance=ingredient)
-
-        if form.is_valid(): # checks CSRF
-            ingredient.delete()
-            return redirect("ingredient_list") 
-
-    else:
-        form = IngredientForm(instance=ingredient)
-
-    return render(request, 'tracker/ingredient_delete.html', {'form': form})
 

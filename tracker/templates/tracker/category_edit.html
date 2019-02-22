@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Edit catalog</h2>
+    <h2>Edit category</h2>
     <form method="POST" class="category-form">{% csrf_token %}
         {{ form|crispy }}
         <a href="http://robnichols17.pythonanywhere.com/category/list/" class="btn btn-default">Cancel</a>

@@ -1,12 +1,26 @@
 {% extends 'tracker/base.html' %}
+<!---
+            table {
+              border-collapse: collapse;
+            }
+
+           td, th {
+              padding: 15px;
+            }
+            table, td, th {
+              border: 1px solid black;
+            }
+-->
         {% block plus %}
             <a href="{% url 'inventory_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> 
         {% endblock %}
+        {% block content %}
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
-                {% block content %}
+                {% block stuff %}
                 {% endblock %}
                 </div>
             </div>
         </div>
+        {% endblock %}

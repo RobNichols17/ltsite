@@ -1,0 +1,23 @@
+{% extends 'tracker/ingredient_base.html' %}
+
+{% block content %}
+        <div class="h2">
+            {% autoescape off %}
+                <a href="{% url 'ingredient_new' %}"{{ rid }} class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endautoescape %}
+            Ingredient List {{ rid }}
+        </div>
+        <div>
+            <table>
+              <tr>
+                <th>Item </th>
+              </tr>
+            {% for ingredient in ingredients %}
+              <tr>
+                <td style="padding-right: 10px;"><a href="{% url 'ingredient_edit' ingredient.pk %}">{{ ingredient.catalogid }}</a></td>
+                <td><a href="{% url 'ingredient_delete' ingredient.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+              </tr>
+            {% endfor %}
+            </table>
+        </div>
+{% endblock %}

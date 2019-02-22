@@ -62,12 +62,9 @@ class IngredientForm(forms.ModelForm):
                 'catalogid': ('Item'),
         }
 
-class IngredientRecipeFilterForm(forms.ModelForm):
+class RecipeForm(forms.ModelForm):
 
     class Meta:
-        model = Ingredient
-        fields = ('recipeid',)
-        labels  = {
-                'recipeid': ('Recipe'),
-        }
+        model = Recipe
+        fields = ('name', 'description')
 

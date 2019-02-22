@@ -13,7 +13,7 @@ class Category(models.Model):
     catid = models.AutoField(db_column='catid', primary_key=True)  
     name = models.CharField(db_column='name', max_length=30, blank=True, null=True) 
     variety = models.CharField(db_column='variety', max_length=40, blank=True, null=True)
-    description = models.CharField(db_column='description', max_length=75, blank=True, null=True)  
+    description = models.CharField(db_column='description', max_length=100, blank=True, null=True)  
     
     def __str__(self):
         return self.name + ' - ' + self.variety
@@ -21,6 +21,7 @@ class Category(models.Model):
     class Meta:
         managed = True
         db_table = 'Category'
+        ordering = ['name', 'variety']
 
 class Producer(models.Model):
     producerid = models.AutoField(db_column='producerid', primary_key=True)  
@@ -41,8 +42,8 @@ class Catalog(models.Model):
     description = models.TextField(db_column='description', blank=True, null=True)  
     color = models.CharField(db_column='color', max_length=20, blank=True, null=True)
     tastingnotes = models.TextField(db_column='tastingnotes', blank=True, null=True)
-    categoryid = models.ForeignKey(Category, models.DO_NOTHING, db_column='categoryid', blank=True, null=True)  
-    producerid = models.ForeignKey(Producer, models.DO_NOTHING, db_column='producerid', blank=True, null=True)  
+    categoryid = models.ForeignKey(Category, on_delete=models.PROTECT, db_column='categoryid', blank=True, null=True)  
+    producerid = models.ForeignKey(Producer, models.PROTECT, db_column='producerid', blank=True, null=True)  
     imgname = models.CharField(db_column='imgname',  max_length=100, blank=True, null=True) 
     catalog_img = models.ImageField(upload_to='bottles', blank=True, null=True)
     
@@ -52,11 +53,12 @@ class Catalog(models.Model):
     class Meta:
         managed = True
         db_table = 'Catalog'
+        ordering = ['name']
 
 class Inventory(models.Model):
     invid = models.AutoField(db_column='invid', primary_key=True)  
     quantity = models.IntegerField(db_column='quantity', blank=True, null=True)  
-    catalogid = models.ForeignKey(Catalog, models.DO_NOTHING, db_column='catalogid', blank=True, null=True)  
+    catalogid = models.ForeignKey(Catalog, models.PROTECT, db_column='catalogid', blank=True, null=True)  
 
     def __str__(self):
         return self.invid
@@ -65,3 +67,27 @@ class Inventory(models.Model):
         managed = True
         db_table = 'Inventory'
 
+class Recipe(models.Model):
+    recipeid = models.AutoField(db_column='recipeid', primary_key=True)  
+    name = models.CharField(db_column='name', max_length=100, blank=True, null=True)  
+    description = models.TextField(db_column='description', blank=True, null=True)  
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        managed = True
+        db_table = 'Recipe'
+
+class Ingredient(models.Model):
+    ingredientid = models.AutoField(db_column='ingredientid', primary_key=True)  
+    recipeid = models.ForeignKey(Recipe, models.PROTECT, db_column='recipeid',
+                                 blank=False, null=True)  
+    catalogid = models.ForeignKey(Catalog, models.PROTECT, db_column='catalogid', blank=True, null=True)  
+
+    def __str__(self):
+        return self.recipeid
+
+    class Meta:
+        managed = True
+        db_table = 'Ingredient'

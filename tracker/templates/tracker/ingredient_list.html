@@ -1,0 +1,31 @@
+{% extends 'tracker/ingredient_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <div class="h2">
+            <a href="{% url 'ingredient_new' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a>
+            Ingredient List 
+        </div>
+        <form method="GET" class="recipe-form">
+            {% csrf_token %}
+            <table border=1>
+               {{ recform|crispy }}
+            </table>
+        </form>
+        <div>
+            <table>
+              <tr>
+                <th>Recipe</th>
+                <th>Item </th>
+              </tr>
+            {% for ingredient in ingredients %}
+              <tr>
+                <td style="padding-right: 10px;">{{ ingredient.recipeid }}</a></td>
+                <td style="padding-right: 10px;"><a href="{% url 'ingredient_edit' ingredient.pk %}">{{ ingredient.catalogid }}</a></td>
+                <td><a href="{% url 'ingredient_delete' ingredient.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+              </tr>
+            {% endfor %}
+            </table>
+        </div>
+{% endblock %}
