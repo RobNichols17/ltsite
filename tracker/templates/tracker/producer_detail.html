@@ -1,0 +1,9 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h2>{{ category.name }}
+        <a class="btn btn-default" href="{% url 'category_edit' pk=category.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h2>
+        <p>{{ category.description|linebreaksbr }}</p>
+    </div>
+{% endblock %}

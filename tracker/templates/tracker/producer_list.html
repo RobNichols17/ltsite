@@ -1,0 +1,20 @@
+{% extends 'tracker/producer_base.html' %}
+
+{% block content %}
+        <div>
+            <table style="width:100%">
+              <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th>State (optional)</th>
+              </tr>
+            {% for producer in producers %}
+              <tr>
+                <td><a href="http://robnichols17.pythonanywhere.com/producer/{{ producer.pk }}/edit/">{{ producer.name }}</a></td>
+                <td>{{ producer.country }}</td>
+                <td>{{ producer.state }}</td>
+              </tr>
+            {% endfor %}
+            </table>
+        </div>
+{% endblock %}

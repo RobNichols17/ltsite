@@ -11,11 +11,12 @@ from django.db import models
 
 class Category(models.Model):
     catid = models.AutoField(db_column='catid', primary_key=True)  
-    category = models.CharField(db_column='type', max_length=20, blank=True, null=True)  
-    description = models.CharField(db_column='description', max_length=50, blank=True, null=True)  
+    name = models.CharField(db_column='name', max_length=30, blank=True, null=True) 
+    variety = models.CharField(db_column='variety', max_length=40, blank=True, null=True)
+    description = models.CharField(db_column='description', max_length=75, blank=True, null=True)  
     
     def __str__(self):
-        return self.category 
+        return self.name + ' - ' + self.variety
     
     class Meta:
         managed = True
@@ -25,7 +26,7 @@ class Producer(models.Model):
     producerid = models.AutoField(db_column='producerid', primary_key=True)  
     name = models.CharField(db_column='name', max_length=45, blank=True, null=True)  
     state = models.CharField(db_column='state', max_length=2, blank=True, null=True)  
-    country = models.CharField(db_column='country', max_length=2, blank=True, null=True)  
+    country = models.CharField(db_column='country', max_length=40, blank=True, null=True)  
 
     def __str__(self):
         return self.name

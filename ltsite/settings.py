@@ -25,7 +25,7 @@ SECRET_KEY = '6=gv5_yprygc*9i+n@-1*&7p5+w^r@m4q+e+h48$98uro5q6o1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.pythonanywhere.com']
 
 
 # Application definition
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'ltsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RobNichols17$default',
+        'NAME': 'RobNichols17$liquor',
         'USER': 'RobNichols17',
         'PASSWORD': 'qa By 01 np bz Q# k@',
         'HOST': 'RobNichols17.mysql.pythonanywhere-services.com',
