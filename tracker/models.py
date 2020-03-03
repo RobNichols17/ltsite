@@ -39,6 +39,8 @@ class Catalog(models.Model):
     name = models.CharField(db_column='name', max_length=20, blank=True, null=True)  
     description = models.TextField(db_column='description', blank=True, null=True)  
     color = models.CharField(db_column='color', max_length=20, blank=True, null=True)
+    proof = models.IntegerField(db_column='proof', blank=True, null=True)
+    abv = models.DecimalField(db_column='abv', max_digits=5, decimal_places=2, blank=True, null=True)
     tastingnotes = models.TextField(db_column='tastingnotes', blank=True, null=True)
     categoryid = models.ForeignKey(Category, models.DO_NOTHING, db_column='categoryid', blank=True, null=True)  
     producerid = models.ForeignKey(Producer, models.DO_NOTHING, db_column='producerid', blank=True, null=True)  
@@ -52,7 +54,7 @@ class Catalog(models.Model):
 
 class Inventory(models.Model):
     invid = models.AutoField(db_column='invid', primary_key=True)  
-    quantity = models.IntegerField(db_column='quantity', max_length=45, blank=True, null=True)  
+    quantity = models.IntegerField(db_column='quantity', blank=True, null=True)  
     acquiredate = models.DateTimeField(db_column='acquiredate', blank=True, null=True)  
     catalogid = models.ForeignKey(Catalog, models.DO_NOTHING, db_column='catalogid', blank=True, null=True)  
 
